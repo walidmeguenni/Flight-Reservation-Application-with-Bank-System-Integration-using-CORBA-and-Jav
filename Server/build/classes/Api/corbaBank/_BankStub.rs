@@ -1,0 +1,1 @@
+corbaBank._BankStub

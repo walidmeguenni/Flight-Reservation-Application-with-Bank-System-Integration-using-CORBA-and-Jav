@@ -1,0 +1,65 @@
+module AirLineCorba {
+
+    struct Connect {
+        boolean status;
+        string clientId;
+        string role;
+    };
+
+    struct Client {
+        long clientId;
+        string firstName;
+        string lastName;
+        string email;
+        string address;
+        long phoneNumber;
+        string password;
+        string role;
+        long volId;
+    };
+
+    struct Vol{
+        long volId;
+        string airport;
+        string destination;
+        string takeDate;
+        double totalTicktite;
+        double price;
+    };
+
+    struct Booking {
+        long bookingId;
+        long volId;
+        long clientId;
+        string firstName;
+        string lastName;
+        string airport;
+        string destination;
+        string takeDate;
+        double totalTicktite; 
+        string bookingDate;
+        double price;
+        long ccp;
+    };
+
+
+    typedef sequence<Client> toolclient;
+    typedef sequence<Vol> toolvol;
+    typedef sequence<Booking> toolbooking;
+
+    interface AirLine {
+      Connect Login(in string email, in string password);
+      Connect Signup(in string firstName, in string lastName, in string email, in string password, in string address, in long phoneNumber);
+      boolean addVol(in string airport, in string destination, in string takeDate ,in double totalTicktite, in double price);
+      boolean removeVol(in long volId);
+      boolean updateVol();
+      Vol getVol(in long volId);
+      toolvol getVols();
+      Vol getVolByDestination(in string destination);
+      Client getClient(in string email);
+      toolclient getClients();
+      boolean Transaction(in string email, in long ccp,in double price);
+      boolean addBooking(in long clientId, in long volId, in long ccp, in string email);
+      toolbooking listBookings(in long clientId);
+    };
+};

@@ -1,0 +1,12 @@
+module corbaBank {
+    struct Account {
+       long accountId;
+       string email;
+       long cpp;
+       double balance;
+       string role;
+    };
+    interface Bank{
+      boolean Transaction(in string email, in long ccp,in double balance);
+   };
+};
